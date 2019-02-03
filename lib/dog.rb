@@ -33,10 +33,12 @@ class Dog
     new_from_db(DB[:conn].execute(sql, name).first)
   end
 
-  def self.find_by_id(id)
-    sql = "SELECT * FROM dogs WHERE id = ?"
-    result = DB[:conn].execute(sql, id)[0]
-    Dogs.new(result[0], result[1], result[2])
+  def self.find_by_name(id)
+    sql = <<-SQL
+              SELECT * FROM dogs
+              WHERE id = ?;
+            SQL
+    new_from_db(DB[:conn].execute(sql, id).first)
   end
 
   def self.create(attr_hash)
