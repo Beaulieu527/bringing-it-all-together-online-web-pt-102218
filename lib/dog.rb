@@ -38,7 +38,7 @@ class Dog
               SELECT * FROM dogs
               WHERE id = ?;
             SQL
-    new_from_db(DB[:conn].execute(sql, id).first)
+    new_from_db(DB[:conn].execute(sql, id)
   end
 
   def self.create(attr_hash)
